@@ -22,6 +22,15 @@ Navigate to the go live icon on the bottom right hand of the page.
 A picture of the go live icon is in the uploads folder called go-live pic
 
 
+You will need a web server (e.g. Apache or Nginx) and of 
+course you need to install PHP. 
+
+For Windows you can install WAMP or XAMP and for Mac you can 
+install MAMP. These come with Apache, MySQL (database) 
+and PHP.
+
+
+
 
 
 
