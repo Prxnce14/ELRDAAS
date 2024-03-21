@@ -44,6 +44,42 @@ function fetchAppointments() {
         .catch(error => console.error('Error fetching data:', error));
 }
 
+
+function fetchTakenSlots() {
+    // Current date
+    const currentDate = new Date();
+
+    // Calculate date up to 3 days from current
+    const endDate = new Date();
+    endDate.setDate(currentDate.getDate() + 3);
+
+    // Format the dates as day, month, year
+    const startDateString = formatDate(currentDate);
+    const endDateString = formatDate(endDate);
+
+    // Fetch taken slots from the server
+    fetch(`get_taken_slots?start_date=${startDateString}&end_date=${endDateString}`)
+        .then(response => response.json())
+        .then(data => {
+            const laundryAppointmentsTable = document.querySelector('.laundry-appointments tbody');
+
+            // Clear any existing appointments
+            laundryAppointmentsTable.innerHTML = '';
+
+            // Display the taken slots on the table
+            data.forEach(slot => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${slot.date}</td>
+                    <td>${slot.time}</td>
+                    <td>${slot.user}</td>
+                `;
+                laundryAppointmentsTable.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
 function generateCalendar() {
     const currentDate = new Date();
 
