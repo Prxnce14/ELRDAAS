@@ -39,23 +39,23 @@ When xampp has loaded it should look something similar to xampp_pic in the uploa
 
 If you Apache and MYSQL servers start without errors, you can import the "elrdaas.sql" file in phpMyAdmin and test the functionality of the system.
 
-if attempting to start the MYSQL server gives you an error about port number, Please do the following steps:
+if attempting to start the MYSQL server gives you an error about port number similar to the "phpMyAdmin_port error.jpg" file, Please do the following steps:
 
 1) Navigate to the configs icon for MYSQL
 2) select the "my.ini" file 
 3) search for port in the file ->  ctr kel +  f "port"
 4) the default port is 3306.  change the two instances of the default port number to any value between 1024 - 65535
-4a) save the file and close
+5) save the file and close
 
 
-5) Navigate to the phpMyAdmin folder in the root directory of xampp 
-6) select the "config.inc" PHP source file and open in a text file or in your preferred IDE
-7) After the config value that says " $cfg['Servers'][$i]['AllowNoPassword'] = true;" enter the following line:
-8) $cfg['Servers'][$i]['port'] = <port#>;
+6) Navigate to the phpMyAdmin folder in the root directory of xampp 
+7) select the "config.inc" PHP source file and open in a text file or in your preferred IDE
+8) After the config value that says " $cfg['Servers'][$i]['AllowNoPassword'] = true;" enter the following line:
+9) $cfg['Servers'][$i]['port'] = <port#>;
 the vlaue for "port#" should be the value you entered in step 4
-See "phpMyAdmin_port.png"  file in the uploads folder for reference
+See "phpMyAdmin_port.png" file in the uploads folder for reference
 
-9) save the file and close 
+10) save the file and close 
 
 Restart both servers and you should be able to connect to phpMyAdmin
 
