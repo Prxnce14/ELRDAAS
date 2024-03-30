@@ -606,3 +606,20 @@ main .new-users .user-list .user img{
 .right-section .profile .profile-link:hover .profil-photo img {
     transform: scale(1.1); /* Slight zoom effect on hover */
 }
+
+.form-items{
+    background-color: white;
+    margin-top: 3vh;
+}
+
+label {
+    display: inline-block; /* Make labels behave like blocks */
+    width: 150px; /* Set width for labels */
+    text-align: right; /* Align text to the right within labels */
+    margin-right: 20px; /* Add right margin to labels for spacing */
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: calc(100% - 200px); /* Calculate width for input fields */
+    /* Adjust as needed based on label width */
+}
