@@ -2,7 +2,9 @@
 session_start();
 include 'db_connect.php'; // Include your DB connection file
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
+
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
     $email = $_POST['email'];
@@ -13,10 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    if ($role === 'Admin') {
+    if ($role === 'Admin') 
+    {
         // For admin, insert into the admins table
         $stmt = $conn->prepare("INSERT INTO admins (first_name, last_name, email, password) VALUES (:firstName, :lastName, :email, :hashedPassword)");
-    } else {
+    } 
+    else 
+    {
         // For residents, insert into the residents table, including tower
         $stmt = $conn->prepare("INSERT INTO residents (first_name, last_name, email, password, tower) VALUES (:firstName, :lastName, :email, :hashedPassword, :tower)");
         $stmt->bindParam(':tower', $tower); // Bind the tower parameter
@@ -29,9 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':hashedPassword', $hashedPassword);
 
     // Execute the statement
-    if ($stmt->execute()) {
+    if ($stmt->execute()) 
+    {
         // If a resident is being registered, set their tower in the session
-        if ($role === 'Resident') {
+        if ($role === 'Resident') 
+        {
             $_SESSION['tower'] = $tower;
         }
 
@@ -47,7 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Registration successful!";
         header('Location: login.html');
         exit;
-    } else {
+    } 
+    else 
+    {
         echo "Error: " . $stmt->errorInfo()[2];
     }
 
