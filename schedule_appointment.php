@@ -5,94 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="residentstyles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <script src="js/residentscript.js" defer></script>
     <title>ELR Towers Hall Domestic Affairs - Schedule Laundromat Appointment</title>
 </head>
 <body>
       <div class="container">
             <!--Sidebar Section-->
-            <aside>
-                <div class="toggle">
-                    <div class="logo">
-                        <img src="images/elr towers logo.png" alt="logo">
-                        <h2>ELR Towers Hall<span class = "danger"> Domestic Affairs</span></h2>
-                        <div class="close" id="close-btn">
-                            <span class="material-icons-sharp">
-                                close
-                            </span>
-                            
-                        </div>
-    
-                    </div>
-    
-                    <div class="sidebar" class="active">
-                        <div>
-                            <a href = "resident_dashboard.html"  >
-                            <span class="material-icons-sharp">
-                                info
-                            </span>
-                            <h3>View General Notice Board</h3>
-                        </a>
-                        <a href = "make_requests.html">
-                        
-                            <span class="material-icons-sharp" >
-                                receipt_long
-                            </span>
-                            <h3>Make Request/Complaint</h3>
-                            </a>
-                            <a href = "notifications_res.html" >
-                                <span class="material-icons-sharp">
-                                    notifications
-                                </span>
-                                <h3>Notifications</h3>
-                                </a>    
-                        <a href = "schedule_appointment.html" class="active">
-                                <span class="material-icons-sharp">
-                                    event
-                                </span>
-                                <h3>Schedule Laundromat</h3>
-                                </a>
-                        <a href = "pending_requests.html">
-                            <span class="material-icons-sharp">
-                                hourglass_bottom
-                            </span>
-                            <h3>View Pending Requests</h3>
-                            </a>
-                        <a href = "request_history.html" >
-                            <span class="material-icons-sharp">
-                                receipt_long
-                                </span>
-                                <h3>Request History</h3>
-                                </a>
-
-                        <a href = "profile.html" >
-                            <span class="material-icons-sharp">
-                                person_outline
-                            </span>
-                            <h3>Profile</h3>
-                            </a>
-                        <a href = "settings.html">
-                            <span class="material-icons-sharp">
-                                settings
-                            </span>
-                            <h3>Settings</h3>
-                            </a>
-                        <a href = "login.html" target="_blank">
-                            <span class="material-icons-sharp">
-                                login
-                            </span>
-                            <h3>New Login</h3>
-                            </a>
-                        </div>
-                        <a href = "logout_res.html">
-                            <span class="material-icons-sharp">
-                                logout
-                            </span>
-                            <h3>Logout</h3>
-                            </a>
-                    </div>
-                
-                </div>
-            </aside>
+            <?php include 'res_sidebar.php';?>
             <!--End of Sidebar Section-->
 <!-- Main Content Section -->
 <main class="main-content">
@@ -138,7 +57,6 @@
     </form>
 </main>
 
-<!-- Existing script for dark mode -->
 <script>
     document.getElementById('numLoads').addEventListener('change', calculateCost);
     document.getElementById('service').addEventListener('change', calculateCost);
@@ -172,35 +90,9 @@
     </script>
     
     
-            <!--Right Section-->
+<!--Right Section-->
 
-<div class="right-section">
-    <div class="nav">
-        <button id ="menu-btn">
-            <span class="material-icons-sharp">
-                menu
-            </span>
-        </button>
-        <div class="dark-mode">
-            <span class="material-icons-sharp active">
-                light_mode
-            </span>
-            <span class="material-icons-sharp">
-                dark_mode
-            </span>
-        </div>
-        <div class="profile">
-            <a href="profile.html" class="profile-link">
-                <div class="profil-photo">
-                    <img src="images/elf wolf 1.jpeg" alt="Profile Picture">
-                </div>
-            </a>
-            <div class="info">
-                <p>Hey, <b>[Resident Name]</b></p>
-                <small class="text-muted">Resident</small>
-            </div>
-        </div>
-        </div>
+<?php include 'res_right_section.php';?>
         <!--End of Right Section-->
     </div>
     <script>
@@ -306,6 +198,36 @@ document.addEventListener('DOMContentLoaded', function() {
             populateTimeOptions();
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const appointmentDate = document.getElementById('appointmentDate');
+        const maxDate = new Date();
+
+        // Set the maximum allowed date to 3 days from today
+        maxDate.setDate(maxDate.getDate() + 3);
+        const maxDateString = maxDate.toISOString().split('T')[0];
+        
+        // Set the maximum attribute of the date input field
+        appointmentDate.max = maxDateString;
+        
+        // Add an event listener to the date input field
+        appointmentDate.addEventListener('change', function() {
+            const selectedDate = new Date(appointmentDate.value);
+            const currentDate = new Date();
+            const threeDaysAhead = new Date();
+
+            // Set the date to 3 days ahead of the current date
+            threeDaysAhead.setDate(currentDate.getDate() + 3);
+
+            // If the selected date is more than 3 days ahead, reset the value to 3 days ahead
+            if (selectedDate > threeDaysAhead) {
+                appointmentDate.value = maxDateString;
+                alert("You can only schedule appointments up to 3 days in advance.");
+            }
+        });
+    });
+</script>
+
 
 
     </body>
