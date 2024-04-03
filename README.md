@@ -34,6 +34,10 @@ The link is for the xampp website.
 https://www.apachefriends.org/download.html
 
 
+
+Connecting via Windows
+_______________________________
+
 Upon downloading xampp you can agree to all settings and allow it to download to your local machine.
 When xampp has loaded it should look something similar to xampp_pic in the uploads folder 
 
@@ -59,9 +63,112 @@ See "phpMyAdmin_port.png" file in the uploads folder for reference
 
 Restart both servers and you should be able to connect to phpMyAdmin
 
+11) Once you have connected to phpMyAdmin, you can now navigate to the import icon and upload the "elrdaas.sql" file
+see the "import.png" file in the uploads folder
+
+12) Navigate to your broswer and type: localhost/ELRDAAS
+13) Register a user(resident or admin) and login in with said user
 
 
 
+Connecting via Linux 
+______________________________
+
+
+1) please watch this video for setting up LAMP on your local machine 
+
+https://www.youtube.com/watch?v=NjQsozxW5Ow&t=944s
+
+
+2) Log in to phpMyadmin with the credentials created in number 1
+
+Follow steps 11 - 13 above to test the ELRDAAS system
+
+
+If you encounter an error similar to the "mysql_error.png" file in the uploads folder, follow these steps:
+
+
+The following command provided is for importing a SQL file. It  would look something like this after replacing USERNAME and SERVERNAME with actual values:
+
+mysql -u [USERNAME] -p -h [SERVERNAME] [DATABASE_NAME] < [FILENAME].sql
+
+
+Here’s what you would replace:
+- [USERNAME]: Your MySQL username.
+- [SERVERNAME]: The hostname or IP address of your MySQL server.
+- [DATABASE_NAME]: The name of your database, which seems to be elrdaas in this case.
+- [FILENAME].sql: The name of the SQL file you want to import, which appears to be elrdaas.sql.
+
+
+3) mysql -u phpmyadmin -p -h localhost elrdaas < elrdaas.sql
+
+When you run this command, you will be prompted to enter the password for the MySQL user.
+
+If you get an error that is similar to the "database_error.png" in the uploads folder, complete the following steps:
+see the "fixed_datab_error.png" file for evidence.
+
+ navigate to terminal and type: mysql -u <username> -p. of course, replace "<username>" with your actual username 
+ Enter the password for the user 
+ run this command: CREATE DATABASE elrdaas
+
+
+4) Try reloading phpMyadmin and logging in again.
+
+
+
+
+Connection issues in "db_connect.php"
+___________________________________________
+
+
+if you expereince an error similarly to the "access_denied.png" file in the uploads folder, complete the following steps:
+
+1) Navigate to the "db_connect.php" file and change the vlaues for username and password to the credentails set in number 1 for "connecting via Linux"
+
+
+sample data
+
+$username = 'phpmyadmin';
+$password = 'helloworld12';
+
+
+
+Issues with git commands restricting permission
+________________________________________________
+
+
+you might have to use sudo before git commands if you are getting an error similarly to the "git_perm_error.png" file in the uploads folder
+
+
+sample data
+
+1) sudo git commmit -m "updated some files"
+
+2) A possible solution for this error is setting your git configuration variables. navigate to "Issues with git configuration"
+
+
+
+
+Issues with git configuration
+__________________________________
+
+
+watch this video for all issues with git configuration:
+
+https://www.youtube.com/watch?v=bc3_FL9zWWs
+
+
+
+
+
+Issues editing files in the VAR folder 
+
+____________________________________________
+
+Watch this video for all issues re permisssion only for root user 
+
+
+https://www.youtube.com/watch?v=K4eP83ij3Co
 
 
 

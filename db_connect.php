@@ -1,8 +1,8 @@
 <?php
 
 $host = 'localhost';
-$username = 'root';
-$password = '';
+$username = 'phpmyadmin';
+$password = 'helloworld12';
 $dbname = 'elrdaas';
 
 
