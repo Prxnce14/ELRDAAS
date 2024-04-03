@@ -1,8 +1,8 @@
 <?php
 
 $host = 'localhost';
-$username = 'phpmyadmin';
-$password = 'Babyboy14';
+$username = "root";
+$password = "";
 $dbname = 'elrdaas';
 
 try {
@@ -14,6 +14,3 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
-
-
-
